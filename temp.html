@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Großer Alltags-, Tech- & Social-Check</title>
+    <style>
+        :root {
+            --bg-color: #0b1329;
+            --card-bg: #1c2541;
+            --accent: #48cae4;
+            --text-main: #f1f5f9;
+            --text-sub: #94a3b8;
+            --border: #3a506b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--card-bg);
+            max-width: 680px;
+            width: 100%;
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        p.intro {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .section-header {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+            margin: 28px 0 16px 0;
+        }
+
+        .question-block {
+            margin-bottom: 22px;
+        }
+
+        .question-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .radio-options label {
+            font-size: 13px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            cursor: pointer;
+            line-height: 1.3;
+        }
+
+        .radio-options input[type="radio"] {
+            margin-top: 2px;
+        }
+
+        .radio-options label:hover {
+            color: var(--text-main);
+        }
+
+        /* Tier-Liste Styles */
+        .tier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tier-table th, .tier-table td {
+            padding: 8px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .tier-table th {
+            color: var(--text-sub);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .tier-select {
+            background: #0b1329;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 8px;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        button.submit-btn {
+            width: 100%;
+            background-color: var(--accent);
+            color: #0b1329;
+            border: none;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button.submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        #result-box {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: #0b1329;
+            border: 1px solid var(--accent);
+            border-radius: 10px;
+        }
+
+        #result-box h3 {
+            margin-top: 0;
+            color: var(--accent);
+        }
+
+        #result-box p {
+            font-size: 13px;
+            color: var(--text-sub);
+            line-height: 1.5;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            background: #1c2541;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 12px;
+            padding: 8px;
+            box-sizing: border-box;
+            resize: none;
+        }
+
+        .copy-btn {
+            width: 100%;
+            background: var(--border);
+            color: #fff;
+            border: none;
+            margin-top: 8px;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Alltags-, Technik- & Social-Audit</h1>
+    <p class="intro">Eine Bestandsaufnahme zu Gadgets, Alltagsroutinen, Hardware-Interessen und Matchmaking-Erfahrungen.</p>
+
+    <form id="auditForm">
+
+        <!-- ABSCHNITT 1: GADGETS & UNTERWEGS -->
+        <div class="section-header">Teil 1: EDC, Mobilgeräte & Gadgets</div>
+
+        <!-- Füllfrage: Wearables -->
+        <div class="question-block">
+            <div class="question-label">1. Trägst du im Alltag eine Smartwatch oder ein Fitnessarmband?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="filler_watch" value="smartwatch" required> Ja, eine voll funktionsfähige Smartwatch</label>
+                <label><input type="radio" name="filler_watch" value="tracker"> Ja, ein reines Sport-/Fitnessarmband</label>
+                <label><input type="radio" name="filler_watch" value="classic"> Nein, klassische Armbanduhr oder gar nichts</label>
+            </div>
+        </div>
+
+        <!-- ZIELFRAGE 1: AirTag (Besitz + Wunsch / Nutzen) -->
+        <div class="question-block">
+            <div class="question-label">2. Wie stehst du zu kleinen, münzgroßen Signalgebern / Ortungs-Tags (z. B. am Schlüsselbund, Koffer oder Rucksack, die man per Smartphone auf wenige Zentimeter genau aufspüren kann)?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="target_tracker" value="owns_active" required> Besitze ich bereits und nutze sie regelmäßig</label>
+                <label><input type="radio" name="target_tracker" value="wants_badly"> Besitze ich noch nicht, hätte ich aber sehr gerne / könnte ich super gebrauchen</label>
+                <label><input type="radio" name="target_tracker" value="curious"> Besitze ich nicht, klingt ganz nett, aber kein Muss</label>
+                <label><input type="radio" name="target_tracker" value="no_use"> Besitze ich nicht und sehe für mich auch absolut keinen Nutzen darin</label>
+            </div>
+        </div>
+
+        <!-- ZIELFRAGE 2: Powerbank (Besitz + Relevanz) -->
+        <div class="question-block">
+            <div class="question-label">3. Wie sieht es bei dir mit externen Powerbanks für unterwegs aus?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="target_powerbank" value="owns_active" required> Besitze ich und habe ich regelmäßig/fast immer in der Tasche</label>
+                <label><input type="radio" name="target_powerbank" value="wants_it"> Besitze keine (gute), bräuchte/hätte aber dringend mal eine</label>
+                <label><input type="radio" name="target_powerbank" value="travel_only"> Liegt zu Hause, kommt aber höchstens mal auf Langstreckenreisen mit</label>
+                <label><input type="radio" name="target_powerbank" value="never_needed"> Besitze keine und brauche auch keine (Akku reicht immer)</label>
+            </div>
+        </div>
+
+        <!-- ZIELFRAGE 3: MagSafe Wallet (Besitz + Wunsch / Nutzen) -->
+        <div class="question-block">
+            <div class="question-label">4. Wie stehst du zu minimalistischen Kartenfächern (für 2–3 Karten), die magnetisch direkt an die Rückseite des Smartphones angeheftet werden?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="target_wallet" value="owns_active" required> Nutze ich bereits genau so täglich am Smartphone</label>
+                <label><input type="radio" name="target_wallet" value="wants_it"> Habe ich noch nicht, fände ich aber genial / will ich mir zulegen</label>
+                <label><input type="radio" name="target_wallet" value="skeptical"> Interessant, bin aber skeptisch bzgl. Magnet-Halt oder Kartenanzahl</label>
+                <label><input type="radio" name="target_wallet" value="prefers_classic"> Unpraktisch – ich brauche ein vollwertiges separates Portemonnaie</label>
+            </div>
+        </div>
+
+
+        <!-- ABSCHNITT 2: TECHNIK, CLOUD & HARDWARE -->
+        <div class="section-header">Teil 2: Digitale Services & Hardware</div>
+
+        <!-- Füllfrage: Datensicherung -->
+        <div class="question-block">
+            <div class="question-label">5. Wie sicherst du deine Fotos und Daten primär?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="filler_backup" value="cloud" required> Vollautomatisch in einem Cloud-Abo</label>
+                <label><input type="radio" name="filler_backup" value="local"> Manuell auf externen Festplatten / eigenem Speicher</label>
+                <label><input type="radio" name="filler_backup" value="none"> Kaum bis gar keine Backups</label>
+            </div>
+        </div>
+
+        <!-- ZIELFRAGE 4: ESP / Mikrocontroller (Besitz, Bastel-Spaß, Neugier) -->
+        <div class="question-block">
+            <div class="question-label">6. Wie sieht dein Verhältnis zu kleinen, frei programmierbaren Entwickler-Platinen / Microcontroller-Boards (mit integriertem WLAN/Bluetooth für DIY-Projekte, Sensor-Basteleien, Home Automation) aus?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="target_mcu" value="active_maker" required> Großartig: Ich besitze solche Boards und habe richtig Spaß daran, Code draufzuflashen und zu basteln</label>
+                <label><input type="radio" name="target_mcu" value="wants_to_learn"> Hätte ich extrem Lust drauf / reizt mich total, mir fehlt nur noch die Hardware oder Zeit</label>
+                <label><input type="radio" name="target_mcu" value="shelved"> Liegen hier irgendwo rum, aber verstauben eher</label>
+                <label><input type="radio" name="target_mcu" value="no_interest"> Gar kein Bezug zu Elektronik-Basteln – Geräte müssen fertig verschraubt sein</label>
+            </div>
+        </div>
+
+        <!-- Füllfrage: Streaming -->
+        <div class="question-block">
+            <div class="question-label">7. Wie viele Video-/Musik-Streamingdienste nutzt du aktiv parallel?</div>
+            <div class="radio-options">
+                <label><input type="radio" name="filler_streaming" value="many" required> Mehr als 3 verschiedene Abos</label>
+                <label><input type="radio" name="filler_streaming" value="few"> 1 bis 2 feste Plattformen</label>
+                <label><input type="radio" name="filler_streaming" value="free_only"> Nur kostenlose Angebote / werbefinanziert</label>
+            </div>
+        </div>
+
+
+        <!-- ABSCHNITT 3: DATING-PORTALE TIER-LISTE -->
+        <div class="section-header">Teil 3: Dating-Apps & Plattformen Tier-Liste</div>
+        <p style="font-size: 12px; color: var(--text-sub); margin-top: -8px; margin-bottom: 12px;">
+            Gib für die Portale deine persönliche Einstufung ab (S = Bester Eindruck/Erfahrung, D = Schlechter Eindruck/Erfahrung).
+        </p>
+
+        <table class="tier-table">
+            <thead>
+                <tr>
+                    <th>Plattform</th>
+                    <th style="width: 145px;">Tier-Rang</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tinder</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_tinder">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Hinge</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_hinge">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Bumble</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_bumble">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>OkCupid</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_okcupid">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Lovoo</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_lovoo">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Feeld</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_feeld">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Parship</strong></td>
+                    <td>
+                        <select class="tier-select" name="tier_parship">
+                            <option value="S">S (Top)</option>
+                            <option value="A">A (Sehr gut)</option>
+                            <option value="B">B (Geht so)</option>
+                            <option value="C">C (Eher schlecht)</option>
+                            <option value="D">D (Katastrophe)</option>
+                            <option value="unused" selected>Nie genutzt / Inaktiv</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="submit-btn">Fragebogen abschließen</button>
+    </form>
+
+    <!-- Ausgabe mit Base64 -->
+    <div id="result-box">
+        <h3>Vielen Dank für deine Teilnahme!</h3>
+        <p>Bitte kopiere den folgenden verschlüsselten Code und <strong>schicke ihn an den Fragesteller zurück</strong>, damit deine Antworten ausgewertet werden können:</p>
+        <textarea id="encodedOutput" readonly></textarea>
+        <button type="button" class="copy-btn" id="copyBtn">Ergebnis-Code kopieren</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('auditForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        // NUR relevante Zielvariablen herausfiltern (inkl. target_powerbank)
+        const relevantKeys = [
+            'target_tracker',
+            'target_powerbank',
+            'target_wallet',
+            'target_mcu',
+            'tier_tinder',
+            'tier_hinge',
+            'tier_bumble',
+            'tier_okcupid',
+            'tier_lovoo',
+            'tier_feeld',
+            'tier_parship'
+        ];
+
+        const payload = {};
+        relevantKeys.forEach(key => {
+            if (formData.has(key)) {
+                payload[key] = formData.get(key);
+            }
+        });
+
+        // In JSON umwandeln und UTF-8-konform als Base64 kodieren
+        const jsonString = JSON.stringify(payload);
+        const base64Code = btoa(unescape(encodeURIComponent(jsonString)));
+
+        // Formular verstecken & Code einblenden
+        document.getElementById('auditForm').style.display = 'none';
+        const resultBox = document.getElementById('result-box');
+        const outputArea = document.getElementById('encodedOutput');
+
+        outputArea.value = base64Code;
+        resultBox.style.display = 'block';
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+        const outputArea = document.getElementById('encodedOutput');
+        outputArea.select();
+        navigator.clipboard.writeText(outputArea.value).then(() => {
+            this.textContent = 'Erfolgreich kopiert!';
+            setTimeout(() => { this.textContent = 'Ergebnis-Code kopieren'; }, 2000);
+        });
+    });
+</script>
+
+</body>
+</html>
+
